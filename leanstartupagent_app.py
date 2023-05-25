@@ -12,10 +12,13 @@ from langchain.agents import AgentType
 
 st.title("LeanStartupAgent")
 
+st.title("This agent executes the basic steps of the Lean Startup Approach for developing novel business models. As a user, you need to enter your job-to-be-done and you need to give a description of your target customer segment. Subsequently, the agent will generate (i) Description of the core painpoint, (ii) Description of potential value proposition, (iii) Overview of value proposition canvas and (iv) Core hypotheses to be tested.
+
+st.title("The theoretical grounding of this agent is based on the work of people such as Steve Blank (https://mostawesomepodcast.com/tag/steve-blank/), Alex Osterwalder (https://mostawesomepodcast.com/strategyzer/) and Eric Ries.")
+
 #define company and project
 
 open_api_key = st.text_input('Enter your open api key. This information is not recorded or stored in any way', type = "password")
-serpapi_api_key = st.text_input('Enter your serpapi api key. This information is not recorded or stored in any way', type = "password")
 
 job_to_be_done = st.text_input('Describe the core job to be done')
 customer_description = st.text_input('Describe your customer segment')
@@ -47,19 +50,6 @@ if clicked:
     canvas = canvas_chain.run(value_proposition=valueproposition)
     st.markdown('**Agent description of value proposition canvas =**')
     st.write(canvas)
-    search = SerpAPIWrapper(serpapi_api_key = serpapi_api_key)
-    search_tool = [Tool(
-        name="Intermediate Answer",
-        func=search.run,
-        description="useful for when you need to ask with search")]
-    # Prompt competitor identification based on SerpAPPI
-    search = SerpAPIWrapper(serpapi_api_key = serpapi_api_key)
-    self_ask_with_search = initialize_agent(search_tool, llm, agent=AgentType.SELF_ASK_WITH_SEARCH, verbose=True)
-    searchstring = "Search three existing startup companies that have a description that is very similar to the following description:" + valueproposition + "Provide for each company the city location. Ensure that the output matches the expected format, including the presence of the finish_string."
-    competitors = self_ask_with_search.run(searchstring)
-    st.markdown('**Agent identification of competitors =**')
-    st.write(competitors)
-    competitors_list = competitors.split('), ')
     # prompting hypotheses
     hypotheses_template = PromptTemplate(
       input_variables = ['value_proposition', 'canvas'], 
