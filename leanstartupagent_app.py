@@ -12,7 +12,7 @@ from langchain.agents import AgentType
 
 st.title("LeanStartupAgent")
 
-st.title("This agent executes the basic steps of the Lean Startup Approach for developing novel business models. As a user, you need to enter your job-to-be-done and you need to give a description of your target customer segment. Subsequently, the agent will generate (i) Description of the core painpoint, (ii) Description of potential value proposition, (iii) Overview of value proposition canvas and (iv) Core hypotheses to be tested.
+st.title("This agent executes the basic steps of the Lean Startup Approach for developing novel business models. As a user, you need to enter your job-to-be-done and you need to give a description of your target customer segment. Subsequently, the agent will generate (i) Description of the core painpoint, (ii) Description of potential value proposition, (iii) Overview of value proposition canvas and (iv) Core hypotheses to be tested.")
 
 st.title("The theoretical grounding of this agent is based on the work of people such as Steve Blank (https://mostawesomepodcast.com/tag/steve-blank/), Alex Osterwalder (https://mostawesomepodcast.com/strategyzer/) and Eric Ries.")
 
